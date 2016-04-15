@@ -1,0 +1,24 @@
+{
+  "name": "fb-messenger",
+  "version": "1.0.0",
+  "description": "https://github.com/jw84/messenger-bot-tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewszucs/fb-messenger.git"
+  },
+  "author": "Andrew Szucs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewszucs/fb-messenger/issues"
+  },
+  "homepage": "https://github.com/andrewszucs/fb-messenger#readme",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "request": "2.71.0"
+  }
+}
