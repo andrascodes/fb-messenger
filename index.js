@@ -50,6 +50,49 @@ app.get('/webhook', function(req, res) {
     }
 });
 
+//Function to ECHO back messages
+function sendTextMessage(sender, text) {
+    messageData = {
+        text: text
+    };
+    
+    request(
+        {
+            url: '',
+            qs: { access_token: FB_PAGE_TOKEN },
+            method: 'POST',
+            json: {
+                recipient: { id: sender },
+                message: messageData,
+            }
+        }, 
+        function(error, response, body) {
+            if(error) {
+                console.log('Error sending messages: ', error);
+            }
+            else if(response.body.error) {
+                console.log('Error: ', response.body.error);
+            }
+        }
+    );
+}
+
+// API endpoint To process messages
+app.post('/webhook', function(req, res) {
+    messaging_events = req.body.entry[0].messaging;
+    for(i=0; i < messaging_events.length; i++) {
+        event = req.body.entry[0].messaging[i];
+        sender = event.sender.id;
+        if(event.message && event.message.text) {
+            text = event.message.text;
+            sendTextMessage(sender, "Text received, echo: " + text.substring(0,200));
+        }
+    }
+    res.sendStatus(200);
+});
+
+
+
 //Start server
 app.listen( app.get('port'), function() {
     console.log('app running on port', app.get('port'));    
