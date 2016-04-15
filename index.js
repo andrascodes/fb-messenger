@@ -58,7 +58,7 @@ function sendTextMessage(sender, text) {
     
     request(
         {
-            url: '',
+            url: 'https://graph.facebook.com/v2.6/me/messages',
             qs: { access_token: FB_PAGE_TOKEN },
             method: 'POST',
             json: {
@@ -80,7 +80,7 @@ function sendTextMessage(sender, text) {
 // API endpoint To process messages
 app.post('/webhook', function(req, res) {
     messaging_events = req.body.entry[0].messaging;
-    for(i=0; i < messaging_events.length; i++) {
+    for(i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i];
         sender = event.sender.id;
         if(event.message && event.message.text) {
