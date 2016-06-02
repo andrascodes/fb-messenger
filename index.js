@@ -161,6 +161,8 @@ app.post('/webhook', function(req, res) {
     console.log(messaging_events);
     ev = req.body.entry[0].messaging[0];
     me = ev.sender.id;
+    console.log(ev);
+    console.log(me);
     request(`https://graph.facebook.com/v2.6/${me}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=FB_PAGE_TOKEN`, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             console.log(JSON.parse(body));
