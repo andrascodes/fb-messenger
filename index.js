@@ -159,6 +159,15 @@ app.get('/webhook', function(req, res) {
 app.post('/webhook', function(req, res) {
     messaging_events = req.body.entry[0].messaging;
     console.log(messaging_events);
+    ev = req.body.entry[0].messaging[0];
+    me = ev.sender.id;
+    request(`https://graph.facebook.com/v2.6/${me}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=FB_PAGE_TOKEN`, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(JSON.parse(body));
+        }
+    });
+
+
     for(i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i];
         sender = event.sender.id;
