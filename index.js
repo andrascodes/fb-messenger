@@ -170,29 +170,21 @@ function getProfileInfo(senderID) {
 // API endpoint To process messages
 app.post('/webhook', function(req, res) {
 
+
     for(i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i];
-        console.log(event);
         sender = event.sender.id;
+        console.log(event);
         console.log(sender);
-        getProfileInfo(me);
+        getProfileInfo(sender);
+
+        if(event.message && event.message.attachments) {
+            attachment = event.message.attachments;
+        }
 
         if(event.message && event.message.text) {
             text = event.message.text;
             
-            // if text IS 'Generic' we can send a Generic Message
-            if(text === 'Generic') {
-                sendGenericMessage(sender);
-                // 'continue': Start the next iteration of the loop immediately
-                continue;
-            }
-            // if text is NOT 'Generic' we can send a TEXT Message
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0,200));
-        }
-
-        if(event.message && event.message.attachments) {
-            attachment = event.message.attachments;
-            console.log(attachment)
             // if text IS 'Generic' we can send a Generic Message
             if(text === 'Generic') {
                 sendGenericMessage(sender);
