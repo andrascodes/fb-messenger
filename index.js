@@ -161,6 +161,9 @@ function getProfileInfo(senderID) {
                 var info = JSON.parse(body);
                 console.log(info);
             }
+            else {
+                console.log("doesnt work");
+            }
         });
     }
 
