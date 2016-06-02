@@ -180,6 +180,7 @@ app.post('/webhook', function(req, res) {
 
         if(event.message && event.message.attachments) {
             attachment = event.message.attachments;
+            console.log(attachment);
         }
 
         if(event.message && event.message.text) {
