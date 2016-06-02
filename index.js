@@ -169,16 +169,14 @@ function getProfileInfo(senderID) {
 
 // API endpoint To process messages
 app.post('/webhook', function(req, res) {
-    messaging_events = req.body.entry[0].messaging;
-    console.log(messaging_events);
-    ev = req.body.entry[0].messaging[0];
-    me = ev.sender.id;
-    console.log(ev);
-    console.log(me);
-    getProfileInfo(me);
-
 
     for(i = 0; i < messaging_events.length; i++) {
+        event = req.body.entry[0].messaging[i];
+        console.log(event);
+        sender = event.sender.id;
+        console.log(sender);
+        getProfileInfo(me);
+
         if(event.message && event.message.text) {
             text = event.message.text;
             
