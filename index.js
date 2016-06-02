@@ -156,7 +156,7 @@ app.get('/webhook', function(req, res) {
 });
 
 function getProfileInfo(senderID) {
-        request(`https://graph.facebook.com/v2.6/${senderID}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=FB_PAGE_TOKEN`, function(error, response, body) {
+        request(`https://graph.facebook.com/v2.6/${senderID}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${FB_PAGE_TOKEN}`, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 var info = JSON.parse(body);
                 console.log(info);
